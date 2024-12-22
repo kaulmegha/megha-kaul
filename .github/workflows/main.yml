@@ -1,0 +1,58 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: 14 # Update to the desired Node.js version
+
+      # - name: Install Dependencies
+      #   run: |
+      #     npm ci
+      #     npm install -g @angular/cli
+
+
+      - name: Set environment
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          BUILD_TIME=$(TZ=America/Los_Angeles date)
+          sed -i "s/CI_COMMIT_SHORT_SHA/${GITHUB_SHA:0:8}/" src/environments/*.ts
+          sed -i "s/CI_PIPELINE_ID/$GITHUB_RUN_ID/" src/environments/*.ts
+          sed -i "s/BUILD_TIME/$BUILD_TIME/" src/environments/*.ts
+          sed -i "s/VERSION/$VERSION/" src/environments/*.ts
+
+      - name: Build
+        run:  |
+          rm -rf node_modules
+          rm package-lock.json
+          docker run --rm -w /app -v $(pwd):/app alexsuch/angular-cli:10.2.3 npm install && npm run build:prod
+
+      - name: checking environment variables
+        run: |
+          cat src/environments/*.ts
+          find . -maxdepth 1 -ls
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          BRANCH: gh-pages # (default) The branch the action should deploy to.
+          FOLDER: dist/website-v2 # The folder the action should deploy.
+

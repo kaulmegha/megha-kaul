@@ -1,0 +1,64 @@
+<div class="section" id="about">
+  <div class="container">
+    <div class="card" data-aos="fade-up" data-aos-offset="10">
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <div class="card-body">
+            <div class="h4 mt-0 title">About Me</div>
+            <p>Hi I'm <strong>Vivek Bhat</strong>.</p>
+            <ng-container *ngFor="let about of about$ | async">
+              <p>{{about}}</p>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="card-body">
+            <div class="h4 mt-0 title">Basic Information</div>
+            <!--<div class="row">-->
+            <!--<div class="col-sm-4">-->
+            <!--<strong class="text-uppercase">Date of Birth:</strong>-->
+            <!--</div>-->
+            <!--<div class="col-sm-8">May 17, 1993</div>-->
+            <!--</div>-->
+            <ng-container *ngTemplateOutlet="basic; context: {key: 'Name', value: 'Vivek Bhat'}"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="basic; context: {key: 'Email', value: 'bhatvivek93@gmail.com'}"></ng-container>
+            <ng-container *ngTemplateOutlet="basic; context: {key: 'Phone', value: '+1 (919) 945-6945'}"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="basic; context: {key: 'Address', value: 'Beaverton, Oregon USA'}"></ng-container>
+            <!--<ng-container *ngTemplateOutlet="basic; context: {key: 'Languages', value: 'Vivek Bhat'}"></ng-container>-->
+
+            <!--<div class="row mt-3">-->
+            <!--<div class="col-sm-4">-->
+            <!--<strong class="text-uppercase">Phone:</strong>-->
+            <!--</div>-->
+            <!--<div class="col-sm-8">+1 (919) 945-6945</div>-->
+            <!--</div>-->
+            <!--<div class="row mt-3">-->
+            <!--<div class="col-sm-4">-->
+            <!--<strong class="text-uppercase">Address:</strong>-->
+            <!--</div>-->
+            <!--<div class="col-sm-8"> Beaverton, Oregon USA-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="row mt-3">-->
+            <!--<div class="col-sm-4">-->
+            <!--<strong class="text-uppercase">Language:</strong>-->
+            <!--</div>-->
+            <!--<div class="col-sm-8">English, Hindi</div>-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #basic let-key="key" let-value="value">
+  <div class="row mt-3">
+    <div class="col-sm-4">
+      <strong class="text-uppercase">{{key}}:</strong>
+    </div>
+    <div class="col-sm-8">{{value}}</div>
+  </div>
+</ng-template>

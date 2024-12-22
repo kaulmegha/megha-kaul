@@ -1,0 +1,104 @@
+<div class="section" id="contact">
+  <div class="cc-contact-information" style="background-image: url('assets/images/contact.jpg');">
+    <div class="container">
+      <div class="cc-contact">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="card mb-0" data-aos="zoom-in">
+              <div class="h4 text-center title">Contact Me</div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card-body">
+
+                    <form [formGroup]="contactFormGroup" (ngSubmit)="onSubmit()">
+                      <div class="p pb-3">
+                        <strong>Feel free to contact me </strong>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
+                          <input type="text" name="name" id="name" [formControlName]="'name'" class="form-control"
+                                 placeholder="Name" required>
+                        </div>
+                        <div
+                          *ngIf="contactFormGroup.controls['name'].invalid
+                          && (contactFormGroup.controls['name'].dirty || contactFormGroup.controls['name'].touched)"
+                          class="error">
+                          <div *ngIf="contactFormGroup.controls['name'].errors.required">
+                            Name is required.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-envelope"></i>
+                          </span>
+                          <input type="text" name="email" id="email" [formControlName]="'email'" class="form-control"
+                                 placeholder="E-Mail" required email>
+                        </div>
+                        <div *ngIf="contactFormGroup.controls['email'].invalid
+                        && (contactFormGroup.controls['email'].dirty || contactFormGroup.controls['email'].touched)"
+                             class="error">
+                          <div *ngIf="contactFormGroup.controls['email'].errors.required">Email is required.</div>
+                          <div *ngIf="contactFormGroup.controls['email'].errors.email">Email must be a valid email
+                            address.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            <i class="fa fa-phone"></i>
+                          </span>
+                          <input type="text" name="phone" id="phone" [formControlName]="'phoneNumber'"
+                                 class="form-control"
+                                 placeholder="Phone">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                      <textarea name="message" id="message" [formControlName]="'message'" rows="5" class="form-control"
+                                placeholder="Message" required></textarea>
+                        <div *ngIf="contactFormGroup.controls['message'].invalid
+                        && (contactFormGroup.controls['message'].dirty || contactFormGroup.controls['message'].touched)"
+                             class="error">
+                          <div *ngIf="contactFormGroup.controls['message'].errors.required">Message is required.</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <button [disabled]="!contactFormGroup.valid" class="btn btn-success">Send Message</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="card-body">
+                      <p class="mb-0">
+                        <strong>Phone</strong>
+                      </p>
+                      <p class="pb-2">+1 (919) 945-6947</p>
+                      <p class="mb-0">
+                        <strong>Email</strong>
+                      </p>
+                      <p>bhatvivek93@gmail.com</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div [hidden]="!submitted" class="contact-message">
+                      <div *ngIf="success" class="contact-success">
+                        <h2 class="success">Success!</h2>
+                        <h4>Contact form has been successfully submitted.</h4>
+                        <br/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

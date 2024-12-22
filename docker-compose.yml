@@ -1,0 +1,12 @@
+version: '3'
+services:
+  app_installer:
+    image: alexsuch/angular-cli:10.2.3
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "4200:4200"  # Expose port 4200 from the container to the host
+    command: 
+      - npm ci
+      - ng serve

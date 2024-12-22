@@ -1,0 +1,26 @@
+<footer class="footer" id="footer">
+  <div class="container text-center">
+    <a class="cc-linkedin btn btn-link" href="https://www.linkedin.com/in/vivek-bhat/" target="_blank">
+      <i class="fa fa-linkedin fa-2x " aria-hidden="true"></i>
+    </a>
+    <a class="cc-instagram btn btn-link" href="https://www.instagram.com/vivek_bhat_/" target="_blank">
+      <i class="fa fa-instagram fa-2x " aria-hidden="true"></i>
+    </a>
+    <a class="cc-twitter btn btn-link " href="https://twitter.com/bhat175" target="_blank">
+      <i class="fa fa-twitter fa-2x " aria-hidden="true"></i>
+    </a>
+
+    <a class="cc-github btn btn-link " href="https://github.com/vivekbhat" target="_blank">
+      <i class="fa fa-github fa-2x " aria-hidden="true"></i>
+    </a>
+  </div>
+  <div class="text-center text-muted">
+    <p>&copy; All rights reserved.</p>
+  </div>
+  <div class="text-center text-muted">
+    <b>Release version:</b> v{{buildInformation.version || '0.0.0' }}  |
+    <b>Commit:</b> {{buildInformation.commit || 'unknown'}}   |
+    <b>Built:</b> {{buildInformation.buildTime || 'locally' }}  |
+    <b>Pipeline: </b> #{{buildInformation.buildPipeline || 0}}
+  </div>
+</footer>

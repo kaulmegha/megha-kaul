@@ -1,0 +1,31 @@
+<div class="section" id="projects">
+  <div class="container cc-education">
+    <div class="section" id="oss-projects">
+      <div class="h4 text-center mb-4 title">Open Source Projects</div>
+    </div>
+
+    <div class="row">
+      <ng-container *ngTemplateOutlet="loadProjects; context: {list: ossProjects$ | async}"></ng-container>
+    </div>
+
+    <div class="section" id="other-projects">
+      <div class="h4 text-center mb-4 title">Other Projects</div>
+      <div class="row">
+        <ng-container *ngTemplateOutlet="loadProjects; context: {list: otherProjects$ | async}"></ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadProjects let-list="list">
+  <ng-container *ngFor="let project of list">
+    <div class="col-md-4 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
+      <app-oss-projects [title]="project.title"
+                        [technology]="project.technology"
+                        [img]="project.imgName"
+                        [githubLink]="project.gitHubLink"
+                        [readmeLink]="project.readmeLink">
+      </app-oss-projects>
+    </div>
+  </ng-container>
+</ng-template>
