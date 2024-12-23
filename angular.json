@@ -30,6 +30,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
+            "baseHref": "megha-kaul/",
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
