@@ -1,7 +1,7 @@
 name: Build and Deploy
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   build:
@@ -29,7 +29,6 @@ jobs:
       #     npm ci
       #     npm install -g @angular/cli
 
-
       - name: Set environment
         run: |
           VERSION=$(node -p "require('./package.json').version")
@@ -40,7 +39,7 @@ jobs:
           sed -i "s/VERSION/$VERSION/" src/environments/*.ts
 
       - name: Build
-        run:  |
+        run: |
           rm -rf node_modules
           rm package-lock.json
           docker run --rm -w /app -v $(pwd):/app alexsuch/angular-cli:10.2.3 npm install && npm run build:prod
