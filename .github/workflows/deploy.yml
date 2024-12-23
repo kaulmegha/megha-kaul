@@ -20,10 +20,10 @@ jobs:
           docker run node:22-alpine npm -v
 
       - name: Install dependencies
-        run: docker run -v ${{ github.workspace }}:/app -w /app node:22-alpine npm install
+        run: docker run -v ${{ github.workspace }}:/app -w /app node:22-alpine sh -c "apk add --no-cache git && npm install"
 
       - name: Build Angular app
-        run: docker run -v ${{ github.workspace }}:/app -w /app node:22-alpine npm run build -- --prod --base-href="/megha-kaul/"
+        run: docker run -v ${{ github.workspace }}:/app -w /app node:22-alpine sh -c "npm run build -- --prod --base-href='/megha-kaul/'"
 
       - name: Deploy to GitHub Pages
-        run: docker run -v ${{ github.workspace }}:/app -w /app node:22-alpine npx angular-cli-ghpages --dir=dist/website-v2
+        run: docker run -v ${{ github.workspace }}:/app -w /app node:22-alpine sh -c "npx angular-cli-ghpages --dir=dist/website-v2"
